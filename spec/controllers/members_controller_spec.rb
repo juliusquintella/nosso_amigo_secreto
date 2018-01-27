@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
 
+  # ----------------------------
+  #            DESAFIO
+  # ----------------------------
+
   describe "GET #create" do
     it "returns http success" do
       get :create
