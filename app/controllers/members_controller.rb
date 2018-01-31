@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  dbefore_action :authenticate_user!, except: [:opened]
+  before_action :authenticate_user!, except: [:opened]
 
   before_action :set_member, only: [:show, :destroy, :update]
   before_action :is_owner?, only: [:destroy, :update]
@@ -10,7 +10,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.json { render json: true }
+        format.json { render json: @member }
       else
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
