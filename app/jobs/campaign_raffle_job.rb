@@ -2,12 +2,14 @@ class CampaignRaffleJob < ApplicationJob
   queue_as :email
 
   def perform(campaign)
-    # Do something laterresults = RaffleService.new(campaign).call
-
+    puts "--- sasa"
+    results = RaffleService.new(campaign).call
+    puts "\n\n ------- AQUI 1 \n\n"
     campaign.members.each {|m| m.set_pixel}
     results.each do |r|
       CampaignMailer.raffle(campaign, r.first, r.last).deliver_now
     end
+    puts "\n\n ------- AQUI \n\n"
     campaign.update(status: :finished)
 
 
