@@ -4,7 +4,7 @@ class CampaignRaffleJob < ApplicationJob
   def perform(campaign)
     results = RaffleService.new(campaign).call
 
-    if results
+    if !results
       CampaignMailer.raffle_error(campaign).deliver_now
     else
       campaign.members.each {|m| m.set_pixel}
