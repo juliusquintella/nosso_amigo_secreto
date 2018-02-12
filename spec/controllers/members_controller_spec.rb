@@ -20,12 +20,6 @@ RSpec.describe MembersController, type: :controller do
       expect{ post :create, params: {member: @member} }.to change(Member, :count).by(1)
     end
 
-    #it "should return the created member" do
-    #  post :create, params: {member: @member}, format: :json
-      
-    #  expect(response.body["email"]).to eq(@member.email)
-    #end
-
     it "whit invalid attributes" do
       @member[:campaign_id] = nil
       post :create, params: { member: @member }

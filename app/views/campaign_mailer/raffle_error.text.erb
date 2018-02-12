@@ -1,0 +1,10 @@
+Nosso Amigo Secreto
+    
+<%= @campaign.title %>
+<%= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")}" : @campaign.location %>
+<%= @campaign.description %>
+
+Olá <%= @campaign.user.name %>, sua campanha criada no site Nosso Amigo Secreto não pode ser
+sorteada devido a um erro ocorrido durante o processo de sorteio
+
+Acesse sua conta para realizar novamente o sorteio.

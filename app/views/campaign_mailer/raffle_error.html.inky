@@ -1,0 +1,40 @@
+<container class="body-drip">
+  <spacer size="16"></spacer>
+  <row>
+    <columns large="2">
+    </columns>
+    <columns large="1" class="center">
+      <img src="http://localhost:3000/assets/logo.png" alt="">
+    </columns>
+    <columns large="8">
+      <h4>Nosso Amigo Secreto</h4>
+    </columns>
+  </row>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h4 class="text-center">Falha durante sorteio!!!</h4>
+      <p class="text-center"><b><%= @campaign.title %></b></p>
+      <p class="text-center"><%= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")} | " : '' %><%= @campaign.location %></p>
+      <spacer size="16"></spacer>      
+    </columns>
+  </row>
+
+  <hr/>
+
+  <row>
+    <columns>
+      <spacer size="4"></spacer>
+      <p class="text-center">
+        Olá <%= @campaign.user.name %>, sua campanha criada no site Nosso Amigo Secreto não pode ser
+        sorteada devido a um erro ocorrido durante o processo de sorteio
+      </p>
+      <spacer size="8"></spacer>
+      <p class="text-center">Acesse sua conta para realizar novamente o sorteio.</p>
+      <spacer size="8"></spacer>
+    </columns>
+  </row>
+
+</container>

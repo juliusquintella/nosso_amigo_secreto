@@ -7,4 +7,10 @@ class CampaignMailer < ApplicationMailer
 
     mail to: @member.email, subject: "Nosso Amigo Secreto: #{@campaign.title}"
   end
+
+  def raffle_error(campaign)
+    @campaign = campaign
+
+    mail to: @campaign.user.email, subject: "Nosso Amigo Secreto: #{@campaign.title}"
+  end
 end
