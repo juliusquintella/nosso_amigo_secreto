@@ -38,7 +38,9 @@ describe RaffleService do
       end
 
       it "a member x don't get a member y that get the member x" do
-        # Desafio
+        @results.each do |r|
+          expect(@results[r.last]).not_to eq(r.first)
+        end
       end
 
     end
