@@ -1,11 +1,21 @@
 $(document).on 'turbolinks:load', ->
   $('#member_email, #member_name').keypress (e) ->
-    if e.which == 13 && valid_email($( "#member_email" ).val()) && $( "#member_name" ).val() != ""
+    if e.which == 13 && valid_email($("#member_email").val()) && $("#member_name").val() != ""
       $('.new_member').submit()
 
   $('#member_email, #member_name').bind 'blur', ->
-    if valid_email($( "#member_email" ).val()) && $( "#member_name" ).val() != ""
+    if valid_email($("#member_email").val()) && $("#member_name").val() != ""
       $('.new_member').submit()
+
+  $('.member_update').keypress (e) ->
+    memberId = $("#"+e.currentTarget.id).attr('data-id')
+    if e.which == 13 && valid_email($('#email_member_'+memberId).val()) && $('#name_member_'+memberId).val() != ""
+      $('#edit_member_'+memberId).submit()
+
+  $('.member_update').bind 'blur', (e) ->
+    memberId = $("#"+e.currentTarget.id).attr('data-id')
+    if valid_email($('#email_member_'+memberId).val()) && $('#name_member_'+memberId).val() != ""
+      $('#edit_member_'+memberId).submit()
 
   $('body').on 'click', 'a.remove_member', (e) ->
     $.ajax '/members/'+ e.currentTarget.id,
@@ -31,6 +41,17 @@ $(document).on 'turbolinks:load', ->
           Materialize.toast('Membro adicionado', 4000, 'green')
         error: (jqXHR, textStatus, errorThrown) ->
           Materialize.toast('Problema na hora de incluir membro', 4000, 'red')
+    return false
+
+  $('.edit_member').on 'submit', (e) ->
+    $.ajax e.target.action,
+        type: 'PUT'
+        dataType: 'json',
+        data: $("#"+e.currentTarget.id).serialize()
+        success: (data, text, jqXHR) ->
+          Materialize.toast('Membro atualizado', 4000, 'green')
+        error: (jqXHR, textStatus, errorThrown) ->
+          Materialize.toast('Problema ao atualizar Membro', 4000, 'red')
     return false
 
 
